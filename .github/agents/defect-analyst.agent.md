@@ -2,7 +2,7 @@
 name: Defect Analyst
 description: Root-cause analysis of a failing test across UI, coordinator, PowerShell steps, databases, file shares and configuration - builds an evidence chain, classifies test vs product vs environment defects and proposes a fix. Changes nothing.
 argument-hint: "test_payout_run_cross_system failed after last night's server patch. Find the root cause."
-tools: ['read', 'search', 'execute', 'estate/*', 'playwright/*', 'ado/*', 'ado-remote/*']
+tools: [vscode, execute, read, agent, edit, search, web, browser, 'microsoft/azure-devops-mcp/*', azure/search, 'estate/*', 'playwright/*', todo]
 handoffs:
   - label: Approve fix → Test Healer
     agent: Test Healer
