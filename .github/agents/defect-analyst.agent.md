@@ -42,8 +42,10 @@ configuration or data - you propose, a human approves.
    Give each a confidence (High/Medium/Low) and say why the test was right or wrong to fail.
 5. **Propose fixes**: for the product defect, the file, function and a minimal diff sketch; for the
    environment, the remediation (who/what must change it); for tests, what would have caught it earlier.
-6. **Optional - Azure DevOps:** if ADO MCP tools are available, offer to raise a Bug with the evidence
-   chain (title, repro steps, severity, links) - **only after the human confirms**.
+6. **Mandatory - Azure DevOps:** whenever one or more defects are classified, explicitly offer to
+   create an ADO Bug with the evidence chain (title, repro steps, severity, links). Verify that the
+   ADO MCP tools are available, but create the Bug **only after the human explicitly confirms**. If
+   the tools are unavailable, state that the mandatory offer cannot currently be fulfilled.
 7. End with the hand-off: the human approves the fix with the **"Approve fix → Test Healer"** button.
 
 ## Guardrails
@@ -78,5 +80,7 @@ configuration or data - you propose, a human approves.
 3. Tests: <what to add so this is caught earlier>
 
 ### Impact and next step
-<who is affected; what to do now>. Approve the product fix with **Approve fix → Test Healer**.
+<who is affected; what to do now>. Offer: **Would you like me to create an Azure DevOps Bug for the
+classified defect(s)?** Create it only after explicit confirmation. Approve the product fix with
+**Approve fix → Test Healer**.
 ```
