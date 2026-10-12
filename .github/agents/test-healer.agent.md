@@ -43,7 +43,7 @@ wrong, so you never "fix" a test by making it see less.
 
 ## Output format
 
-```
+```markdown
 ## Healing report - <test or defect>
 **Type:** test defect | product defect (approved by <who/when>) | environment (not changed)
 **Change:** <file>: <one-line summary>

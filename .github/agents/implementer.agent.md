@@ -45,7 +45,7 @@ you never edit them - if a test looks wrong, you report it.
 
 ## Output format
 
-```
+```markdown
 ## Implementation - <ID>
 | Criterion | Rule | Change |
 |-----------|------|--------|

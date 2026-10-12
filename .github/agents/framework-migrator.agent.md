@@ -46,7 +46,7 @@ legacy expectation conflicts with today's rulebook, you flag it for a human deci
 
 `reports/MIGRATION-<name>.md` and the same summary in chat:
 
-```
+```markdown
 # Migration - <legacy feature>
 ## Rule conflicts (decision needed)
 | Legacy expectation | Rulebook | Source | Proposed |

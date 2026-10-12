@@ -56,7 +56,7 @@ configuration or data - you propose, a human approves.
 
 ## Output format
 
-```
+```markdown
 ## Root-cause analysis - <test name>
 **Symptom:** <what failed, run ID>
 **Root cause (summary):** <one or two sentences>

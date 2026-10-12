@@ -56,7 +56,7 @@ databases, VMs, file shares, logs - and turn what you observed into a determinis
 
 ## Output format
 
-```
+```markdown
 ## Cross-system test - <journey>
 ### What I observed
 | Layer | Source (tool) | Observation |

@@ -7,7 +7,7 @@ description: Conventions for BDD tests in this repo with pytest-bdd - file layou
 
 ## Layout
 
-```
+```text
 tests/bdd/
   conftest.py                         shared fixtures + step definitions (reuse these first)
   features/<story>_<topic>.feature    Gherkin, e.g. story_123_joint_accounts.feature
@@ -61,7 +61,7 @@ def joint_account(scv, account_id: str, holders: str, amount: str) -> None:
 
 ## Commands
 
-```
+```text
 pytest tests/bdd -m story_123 -v                        # one story
 pytest tests/unit tests/bdd                             # everything deterministic
 pytest tests/unit tests/bdd --cov=payout --cov-report=term-missing

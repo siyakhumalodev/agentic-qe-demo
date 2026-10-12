@@ -11,7 +11,7 @@ agents (MCP) and tests (pytest), so both see the same truth.
 
 ## The estate (simulated, synthetic data)
 
-```
+```text
 Portal "Start payout run" -> control DB (QUEUED) -> coordinator (polls every 2 s)
   -> PROVISIONING_VM   runtime/vms/<run_id>/ from a template with staging.db + work.db
   -> STAGING_FILES     PowerShell Move-ScvFiles.ps1: inbound -> processing/<run_id>/

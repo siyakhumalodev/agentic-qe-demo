@@ -51,7 +51,7 @@ definitions in pytest-bdd. You write tests only - never production code.
 
 ## Output format
 
-```
+```markdown
 ## BDD scenarios - <ID>
 Files: tests/bdd/features/<file>.feature, tests/bdd/steps/<file>.py
 | Scenario | Tags | Result now | Why |

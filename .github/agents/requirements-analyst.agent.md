@@ -50,7 +50,7 @@ You are read-only: you never edit files and never change work items.
 
 ## Output format (exactly these sections)
 
-```
+```markdown
 ## Requirements analysis - <ID> "<title>"
 Simplified rules for demonstration only - not FSCS policy.
 

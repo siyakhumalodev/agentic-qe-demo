@@ -29,7 +29,7 @@ description: How to write and run browser tests for the payout portal with Playw
 
 ## Running and debugging
 
-```
+```text
 pytest tests/e2e -m e2e --headed --slowmo 300            # watch it
 pytest tests/e2e -m e2e --tracing retain-on-failure      # trace.zip under test-results/
 playwright show-trace test-results/<test>/trace.zip
