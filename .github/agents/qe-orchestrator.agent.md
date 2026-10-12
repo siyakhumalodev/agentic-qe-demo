@@ -2,7 +2,7 @@
 name: QE Orchestrator
 description: Delivers a user story end to end with a team of QE sub-agents - requirements analysis, a human approval gate, BDD tests and implementation in parallel, then verification with a traceability report.
 argument-hint: "Deliver STORY-123 end to end. The story is in work-items/STORY-123.md."
-tools: [execute, read, agent, edit, search, 'microsoft/azure-devops-mcp/*', azure/search, todo]
+tools: ['agent', 'read', 'search', 'edit', 'execute', 'todo', 'ado/*', 'ado-remote/*']
 agents: ['Requirements Analyst', 'BDD Test Designer', 'Implementer', 'Test Runner']
 ---
 
@@ -50,25 +50,37 @@ story text, the criteria, file paths, commands and the exact output you expect. 
    `payout/` until the human replies. Only an explicit approval ("Approved...") opens the gate;
    silence, questions or partial answers do not. If the reply changes the scope, update the
    criteria and confirm them back before continuing.
-5. **Record the decision.** Write `reports/<ID>-approved-criteria.md`: the original ACs, each
-   approved gap as a new criterion with its ID (G1...) and rule reference, test-design notes
-   (e.g. "read the limit from `payout.config.DEPOSIT_LIMIT_GBP`"), parked items with their owner,
-   and the approver's words quoted.
-6. **Stage 3 - fan out.** Start **BDD Test Designer** and **Implementer** as two independent tasks
-   (in parallel when your environment allows it). Neither depends on the other's output. Each task
-   contains the full approved criteria text (copied in, not referenced) plus:
-   - BDD Test Designer: write the feature file and step definitions (for STORY-123:
-     `tests/bdd/features/story_123_joint_accounts.feature` and `tests/bdd/steps/test_story_123_steps.py`);
-     tag the feature `@story_123` and each scenario `@ac_<n>` / `@gap_g<n>`; reuse steps from
-     `tests/bdd/conftest.py`; never edit `payout/`; run `pytest tests/bdd -m story_123 -v` and report
-     each scenario red/green (red is expected until the implementation lands).
+5. **Stage 2a - BLOCKING APPROVAL RECORD.** Immediately after explicit approval, write
+   `reports/<ID>-approved-criteria.md` using the actual story ID (not the example ID). Record the
+   original ACs verbatim; the approved criteria with each approved gap's ID (G1...), rule reference
+   and proposed Given/When/Then; test-design notes (e.g. read the limit from
+   `payout.config.DEPOSIT_LIMIT_GBP`); parked items with their owner; and the approver's exact words.
+   An unqualified "Approved" accepts the recommendation you presented at the gate, not every gap
+   in the analyst's report. If the approval is ambiguous, ask for clarification instead of guessing.
+   Re-read the file after writing it and verify that it exists, names the correct story, and matches
+   the human's approved, changed and parked scope. If writing or verifying fails, **STOP** and
+   report the problem. Do not delegate, change `tests/` or `payout/`, or continue to Stage 3.
+6. **Stage 3 - fan out.** Only after Stage 2a succeeds, start **BDD Test Designer** and
+   **Implementer** as two independent tasks (in parallel when your environment allows it).
+   Derive the pytest marker by lowercasing the actual story ID and replacing hyphens with
+   underscores (e.g. `STORY-708` -> `story_708`). Give both agents the approved criteria verbatim
+   from `reports/<ID>-approved-criteria.md`; never substitute the analyst's unapproved proposals
+   or the original story. Each self-contained task also includes:
+   - BDD Test Designer: write `tests/bdd/features/<marker>_joint_accounts.feature` and
+     `tests/bdd/steps/test_<marker>_steps.py`; tag the feature `@<marker>` and each scenario
+     `@ac_<n>` / `@gap_g<n>` for approved items; reuse steps from `tests/bdd/conftest.py`;
+     never edit `payout/`; run `pytest tests/bdd -m <marker> -v` and report each scenario
+     red/green (red is expected until the implementation lands).
    - Implementer: change `payout/` only, never `tests/`; follow the rulebook; run
      `pytest tests/unit tests/bdd`; report the change and results. The new scenarios are written in
      parallel by another agent and may not exist yet.
-7. **Stage 4 - verify.** When both are done, run **Test Runner** with: story ID and title, the path
+7. **Stage 4 - verify.** When both are done, confirm that the approved-criteria file still exists,
+   then run **Test Runner** with: story ID and title, the verified path
    `reports/<ID>-approved-criteria.md`, the feature file path, the changed files and the commands
    `pytest tests/unit tests/bdd --cov=payout --cov-report=term-missing` and
-   `pytest tests/bdd -m story_123 -v`. Ask for `reports/<ID>-traceability.md` and, if Azure DevOps
+   `pytest tests/bdd -m <marker> -v`. Instruct the Test Runner to stop if the approved-criteria
+   file is missing or does not match the human's decision; do not fall back to the source story
+   or the requirements analysis. Ask for `reports/<ID>-traceability.md` and, if Azure DevOps
    test-plan tools are available, test cases linked to the story (otherwise
    `reports/<ID>-ado-test-cases.md` as a preview).
 8. **Handle failures.** If tests fail, decide from the evidence whether the test or the
@@ -80,6 +92,8 @@ story text, the criteria, file paths, commands and the exact output you expect. 
 ## Guardrails
 
 - Never skip, pre-empt or "assume" the approval gate. One gate per story, before any test or code.
+- The verified approval record is mandatory before any implementation, test design or verification
+  handoff. A missing or mismatched record blocks delivery, even if tests pass.
 - Never weaken tests to make them pass; tests and code are written by different agents on purpose.
 - Least privilege: you only edit files under `reports/`; tests and code are written by sub-agents.
 - Azure DevOps: use its MCP tools **only if they are available**; describe what you need (read a work
