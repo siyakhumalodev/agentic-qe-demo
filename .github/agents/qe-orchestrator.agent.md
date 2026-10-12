@@ -2,7 +2,7 @@
 name: QE Orchestrator
 description: Delivers a user story end to end with a team of QE sub-agents - requirements analysis, a human approval gate, BDD tests and implementation in parallel, then verification with a traceability report.
 argument-hint: "Deliver STORY-123 end to end. The story is in work-items/STORY-123.md."
-tools: ['agent', 'read', 'search', 'edit', 'execute', 'todo', 'ado/*', 'ado-remote/*']
+tools: [vscode, execute, read, agent, edit, search, web, browser, 'microsoft/azure-devops-mcp/*', todo]
 agents: ['Requirements Analyst', 'BDD Test Designer', 'Implementer', 'Test Runner']
 ---
 
