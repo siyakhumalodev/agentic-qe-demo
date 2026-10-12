@@ -3,10 +3,8 @@
 | Field | Value |
 |---|---|
 | Type | User Story |
-| State | Ready for development |
-| Area | Payout / Compensation calculation |
+| State | Active |
 | Case | CBS-2026-001 (Contoso Building Society - fictional) |
-| Iteration | Sprint 42 |
 | Tags | payout; joint-accounts |
 
 ## Story
