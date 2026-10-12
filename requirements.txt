@@ -1,0 +1,7 @@
+# Python 3.11+ . Install with: python scripts/setup.py  (creates .venv and installs these)
+pytest>=8.3,<9
+pytest-bdd>=8.1,<9
+pytest-cov>=6.0
+pytest-playwright>=0.7,<0.8
+playwright>=1.50
+mcp>=1.12,<2

@@ -1,0 +1,11 @@
+# Normalise line endings in the repository; LF in the working tree on every OS.
+* text=auto eol=lf
+
+# Windows-native formats keep CRLF.
+*.ps1 text eol=crlf
+*.cs text eol=crlf
+
+*.png binary
+*.jpg binary
+*.zip binary
+*.db binary

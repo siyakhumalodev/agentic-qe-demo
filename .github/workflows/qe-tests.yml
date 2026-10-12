@@ -1,0 +1,75 @@
+# Deterministic quality gate: agents author and heal tests; CI runs plain pytest (no LLM in the critical path).
+name: QE tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qe-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-and-bdd:
+    name: Unit + BDD (with coverage)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Run unit and BDD tests
+        run: >
+          python -m pytest tests/unit tests/bdd
+          --cov=payout --cov-report=term-missing
+          --junitxml=test-results/unit-bdd.xml
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-bdd-results
+          path: test-results/
+
+  e2e:
+    name: End-to-end (portal + behind the wall)
+    needs: unit-and-bdd
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      ESTATE_SPEED: "4"     # 4x faster simulated steps in CI
+      ESTATE_SHELL: auto    # pwsh is preinstalled on GitHub-hosted Ubuntu runners
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python -m playwright install --with-deps chromium
+      - name: Start the simulated estate
+        run: |
+          python -m estate reset
+          nohup python -m estate up > estate-console.log 2>&1 &
+          python -m estate status --wait 60
+      - name: Run end-to-end tests
+        run: >
+          python -m pytest tests/e2e -m e2e
+          --tracing retain-on-failure --screenshot only-on-failure
+          --junitxml=test-results/e2e.xml
+      - name: Upload estate logs and Playwright traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-evidence
+          path: |
+            test-results/
+            runtime/logs/
+            estate-console.log

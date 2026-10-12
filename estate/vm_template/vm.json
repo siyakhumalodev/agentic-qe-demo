@@ -1,0 +1,8 @@
+{
+  "template": "PAYOUT-VM-TEMPLATE",
+  "description": "Simulated payout calculation VM: a template with two databases (staging and work).",
+  "databases": {
+    "staging.db": "staging.sql",
+    "work.db": "work.sql"
+  }
+}

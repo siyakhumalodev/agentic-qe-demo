@@ -1,0 +1,27 @@
+# Local environment
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Estate runtime state (created by python -m estate ...)
+runtime/
+
+# Test and coverage output
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+coverage.json
+htmlcov/
+test-results/
+playwright-report/
+
+# Generated per machine by scripts/setup.py (interpreter path differs per OS)
+.vscode/mcp.json
+.vscode/mcp.json.bak
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp

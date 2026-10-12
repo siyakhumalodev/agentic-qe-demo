@@ -1,0 +1,26 @@
+{
+  "case_ref": "CBS-2026-001",
+  "firm_name": "Contoso Building Society",
+  "scv_file_name": "CBS-2026-001_SCV.csv",
+  "scv_seed_file": "estate/data/CBS-2026-001_SCV.csv",
+  "portal_host": "127.0.0.1",
+  "portal_port": 8085,
+  "public_url": "http://localhost:8085",
+  "poll_interval_seconds": 2.0,
+  "step_timeout_seconds": 120,
+  "run_timeout_seconds": 600,
+  "step_delays_seconds": {
+    "PROVISIONING_VM": 1.5,
+    "STAGING_FILES": 1.0,
+    "LOADING_SCV": 1.2,
+    "CALCULATING": 1.2,
+    "PUBLISHING": 1.0,
+    "ARCHIVING": 0.8,
+    "DEPROVISIONING_VM": 1.0
+  },
+  "inbound_share": "runtime/share/inbound",
+  "processing_share": "runtime/share/processing",
+  "outbound_share": "runtime/share/outbound",
+  "archive_share": "runtime/share/archive",
+  "vms_root": "runtime/vms"
+}
