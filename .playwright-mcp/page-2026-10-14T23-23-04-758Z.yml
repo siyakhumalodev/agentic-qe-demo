@@ -1,0 +1,24 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - link "Payout portal" [ref=f1e3] [cursor=pointer]:
+      - /url: /
+    - generic [ref=f1e4]: Simulated estate · synthetic data
+  - main [ref=f1e5]:
+    - paragraph [ref=f1e6]:
+      - link "← Back to cases" [ref=f1e7] [cursor=pointer]:
+        - /url: /
+    - heading "Payout run RUN-0003" [level=1] [ref=f1e8]
+    - paragraph [ref=f1e9]:
+      - text: Case
+      - strong [ref=f1e10]: CBS-2026-001
+      - text: · Contoso Building Society
+    - paragraph [ref=f1e11]:
+      - text: "Status:"
+      - status [ref=f1e12]: Queued
+    - region [ref=f1e13]:
+      - heading "Timeline" [level=2] [ref=f1e14]
+      - list "Run timeline" [ref=f1e15]:
+        - listitem [ref=f1e16]:
+          - time [ref=f1e17]: 00:23:03
+          - text: Queued - Payout run requested
+  - contentinfo [ref=f1e18]: Fictional data. Simplified rules for demonstration only — not FSCS policy.

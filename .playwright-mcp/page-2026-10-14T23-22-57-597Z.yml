@@ -1,0 +1,43 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "Payout portal" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e4]: Simulated estate · synthetic data
+  - main [ref=e5]:
+    - heading "Cases" [level=1] [ref=e6]
+    - table [ref=e7]:
+      - caption [ref=e8]: Failed deposit-takers (fictional)
+      - rowgroup [ref=e9]:
+        - row [ref=e10]:
+          - columnheader "Case reference" [ref=e11]
+          - columnheader "Firm" [ref=e12]
+          - columnheader "Status" [ref=e13]
+          - columnheader "Depositors (SCV)" [ref=e14]
+          - columnheader "Action" [ref=e15]
+      - rowgroup [ref=e16]:
+        - row [ref=e17]:
+          - rowheader "CBS-2026-001" [ref=e18]
+          - cell "Contoso Building Society" [ref=e19]
+          - cell "Payout in progress" [ref=e20]
+          - cell "30" [ref=e21]
+          - cell [ref=e22]:
+            - button "Start payout run" [ref=e24] [cursor=pointer]
+        - row [ref=e25]:
+          - rowheader "NWM-2024-014" [ref=e26]
+          - cell "Northwind Mutual (fictional)" [ref=e27]
+          - cell "Closed" [ref=e28]
+          - cell "—" [ref=e29]
+          - cell "—" [ref=e30]
+    - heading "Recent payout runs" [level=2] [ref=e31]
+    - table "Recent payout runs" [ref=e32]:
+      - rowgroup [ref=e33]:
+        - row [ref=e34]:
+          - columnheader "Run" [ref=e35]
+          - columnheader "Case" [ref=e36]
+          - columnheader "Status" [ref=e37]
+          - columnheader "Requested" [ref=e38]
+          - columnheader "Finished" [ref=e39]
+      - rowgroup [ref=e40]:
+        - row [ref=e41]:
+          - cell "No payout runs yet." [ref=e42]
+  - contentinfo [ref=e43]: Fictional data. Simplified rules for demonstration only — not FSCS policy.

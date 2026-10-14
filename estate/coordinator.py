@@ -204,6 +204,8 @@ class RunExecutor:
         result = StepResult(display, completed.returncode, completed.stdout, completed.stderr,
                             time.monotonic() - started)
         self._record(spec, step_row, result)
+        if result.exit_code != 0:
+            raise StepFailedError(spec, result)
         return result
 
     def _after_step(self, spec: StepSpec, result: StepResult) -> None:

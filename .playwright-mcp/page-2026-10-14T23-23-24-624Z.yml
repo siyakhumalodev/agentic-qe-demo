@@ -1,0 +1,230 @@
+- generic [active] [ref=f10e1]:
+  - banner [ref=f10e2]:
+    - link "Payout portal" [ref=f10e3] [cursor=pointer]:
+      - /url: /
+    - generic [ref=f10e4]: Simulated estate · synthetic data
+  - main [ref=f10e5]:
+    - paragraph [ref=f10e6]:
+      - link "← Back to cases" [ref=f10e7] [cursor=pointer]:
+        - /url: /
+    - heading "Payout run RUN-0003" [level=1] [ref=f10e8]
+    - paragraph [ref=f10e9]:
+      - text: Case
+      - strong [ref=f10e10]: CBS-2026-001
+      - text: · Contoso Building Society
+    - paragraph [ref=f10e11]:
+      - text: "Status:"
+      - status [ref=f10e12]: Completed
+    - region [ref=f10e13]:
+      - heading "Run summary" [level=2] [ref=f10e14]
+      - generic [ref=f10e15]:
+        - term [ref=f10e16]: Eligible depositors paid
+        - definition [ref=f10e17]: "27"
+        - term [ref=f10e18]: Total compensation
+        - definition [ref=f10e19]: £1,419,538.28
+        - term [ref=f10e20]: Payment file
+        - definition [ref=f10e21]: PAY_CBS-2026-001_RUN-0003.csv
+    - region [ref=f10e22]:
+      - heading "Timeline" [level=2] [ref=f10e23]
+      - list "Run timeline" [ref=f10e24]:
+        - listitem [ref=f10e25]:
+          - time [ref=f10e26]: 00:23:03
+          - text: Queued - Payout run requested
+        - listitem [ref=f10e27]:
+          - time [ref=f10e28]: 00:23:04
+          - text: Provisioning VM - Picked up by the coordinator
+        - listitem [ref=f10e29]:
+          - time [ref=f10e30]: 00:23:05
+          - text: SCV file CBS-2026-001_SCV.csv received from Contoso Building Society in the inbound share
+        - listitem [ref=f10e31]:
+          - time [ref=f10e32]: 00:23:08
+          - text: VM PAYOUT-VM-RUN-0003 provisioned from template PAYOUT-VM-TEMPLATE (staging.db, work.db)
+        - listitem [ref=f10e33]:
+          - time [ref=f10e34]: 00:23:08
+          - text: Staging files
+        - listitem [ref=f10e35]:
+          - time [ref=f10e36]: 00:23:10
+          - text: Loading SCV
+        - listitem [ref=f10e37]:
+          - time [ref=f10e38]: 00:23:12
+          - text: Calculating
+        - listitem [ref=f10e39]:
+          - time [ref=f10e40]: 00:23:14
+          - text: 30 depositors, 27 payees, total £1,419,538.28
+        - listitem [ref=f10e41]:
+          - time [ref=f10e42]: 00:23:14
+          - text: Publishing
+        - listitem [ref=f10e43]:
+          - time [ref=f10e44]: 00:23:17
+          - text: Archiving
+        - listitem [ref=f10e45]:
+          - time [ref=f10e46]: 00:23:18
+          - text: Deprovisioning VM
+        - listitem [ref=f10e47]:
+          - time [ref=f10e48]: 00:23:19
+          - text: VM PAYOUT-VM-RUN-0003 deprovisioned
+        - listitem [ref=f10e49]:
+          - time [ref=f10e50]: 00:23:19
+          - text: Completed - Payout run completed
+    - region [ref=f10e51]:
+      - heading "Payments" [level=2] [ref=f10e52]
+      - table [ref=f10e53]:
+        - caption [ref=f10e54]: Compensation by depositor
+        - rowgroup [ref=f10e55]:
+          - row [ref=f10e56]:
+            - columnheader "Depositor" [ref=f10e57]
+            - columnheader "Name" [ref=f10e58]
+            - columnheader "Eligible" [ref=f10e59]
+            - columnheader "Compensation" [ref=f10e60]
+        - rowgroup [ref=f10e61]:
+          - row [ref=f10e62]:
+            - rowheader "D0001" [ref=f10e63]
+            - cell "Synthetic Depositor 001" [ref=f10e64]
+            - cell "Yes" [ref=f10e65]
+            - cell "£14,166.68" [ref=f10e66]
+          - row [ref=f10e67]:
+            - rowheader "D0002" [ref=f10e68]
+            - cell "Synthetic Depositor 002" [ref=f10e69]
+            - cell "Yes" [ref=f10e70]
+            - cell "£120,000.00" [ref=f10e71]
+          - row [ref=f10e72]:
+            - rowheader "D0003" [ref=f10e73]
+            - cell "Synthetic Depositor 003" [ref=f10e74]
+            - cell "Yes" [ref=f10e75]
+            - cell "£120,000.00" [ref=f10e76]
+          - row [ref=f10e77]:
+            - rowheader "D0004" [ref=f10e78]
+            - cell "Synthetic Depositor 004" [ref=f10e79]
+            - cell "Yes" [ref=f10e80]
+            - cell "£120,000.00" [ref=f10e81]
+          - row [ref=f10e82]:
+            - rowheader "D0005" [ref=f10e83]
+            - cell "Synthetic Depositor 005" [ref=f10e84]
+            - cell "Yes" [ref=f10e85]
+            - cell "£2,000.00" [ref=f10e86]
+          - row [ref=f10e87]:
+            - rowheader "D0006" [ref=f10e88]
+            - cell "Synthetic Depositor 006" [ref=f10e89]
+            - cell "No" [ref=f10e90]
+            - cell "£0.00" [ref=f10e91]
+          - row [ref=f10e92]:
+            - rowheader "D0007" [ref=f10e93]
+            - cell "Synthetic Depositor 007" [ref=f10e94]
+            - cell "Yes" [ref=f10e95]
+            - cell "£0.01" [ref=f10e96]
+          - row [ref=f10e97]:
+            - rowheader "D0008" [ref=f10e98]
+            - cell "Synthetic Depositor 008" [ref=f10e99]
+            - cell "Yes" [ref=f10e100]
+            - cell "£99,999.99" [ref=f10e101]
+          - row [ref=f10e102]:
+            - rowheader "D0009" [ref=f10e103]
+            - cell "Synthetic Depositor 009" [ref=f10e104]
+            - cell "Yes" [ref=f10e105]
+            - cell "£8,917.18" [ref=f10e106]
+          - row [ref=f10e107]:
+            - rowheader "D0010" [ref=f10e108]
+            - cell "Synthetic Depositor 010" [ref=f10e109]
+            - cell "Yes" [ref=f10e110]
+            - cell "£5,000.00" [ref=f10e111]
+          - row [ref=f10e112]:
+            - rowheader "D0011" [ref=f10e113]
+            - cell "Synthetic Depositor 011" [ref=f10e114]
+            - cell "Yes" [ref=f10e115]
+            - cell "£6,234.56" [ref=f10e116]
+          - row [ref=f10e117]:
+            - rowheader "D0012" [ref=f10e118]
+            - cell "Synthetic Depositor 012" [ref=f10e119]
+            - cell "Yes" [ref=f10e120]
+            - cell "£350.01" [ref=f10e121]
+          - row [ref=f10e122]:
+            - rowheader "D0013" [ref=f10e123]
+            - cell "Synthetic Depositor 013" [ref=f10e124]
+            - cell "Yes" [ref=f10e125]
+            - cell "£2,550.00" [ref=f10e126]
+          - row [ref=f10e127]:
+            - rowheader "D0014" [ref=f10e128]
+            - cell "Synthetic Depositor 014" [ref=f10e129]
+            - cell "Yes" [ref=f10e130]
+            - cell "£120,000.00" [ref=f10e131]
+          - row [ref=f10e132]:
+            - rowheader "D0015" [ref=f10e133]
+            - cell "Synthetic Depositor 015" [ref=f10e134]
+            - cell "Yes" [ref=f10e135]
+            - cell "£18,033.33" [ref=f10e136]
+          - row [ref=f10e137]:
+            - rowheader "D0016" [ref=f10e138]
+            - cell "Synthetic Depositor 016" [ref=f10e139]
+            - cell "Yes" [ref=f10e140]
+            - cell "£33.33" [ref=f10e141]
+          - row [ref=f10e142]:
+            - rowheader "D0017" [ref=f10e143]
+            - cell "Synthetic Depositor 017" [ref=f10e144]
+            - cell "Yes" [ref=f10e145]
+            - cell "£27,222.22" [ref=f10e146]
+          - row [ref=f10e147]:
+            - rowheader "D0018" [ref=f10e148]
+            - cell "Synthetic Depositor 018" [ref=f10e149]
+            - cell "Yes" [ref=f10e150]
+            - cell "£0.00" [ref=f10e151]
+          - row [ref=f10e152]:
+            - rowheader "D0019" [ref=f10e153]
+            - cell "Synthetic Depositor 019" [ref=f10e154]
+            - cell "Yes" [ref=f10e155]
+            - cell "£3,000.00" [ref=f10e156]
+          - row [ref=f10e157]:
+            - rowheader "D0020" [ref=f10e158]
+            - cell "Synthetic Depositor 020" [ref=f10e159]
+            - cell "Yes" [ref=f10e160]
+            - cell "£55,000.00" [ref=f10e161]
+          - row [ref=f10e162]:
+            - rowheader "D0021" [ref=f10e163]
+            - cell "Synthetic Depositor 021" [ref=f10e164]
+            - cell "Yes" [ref=f10e165]
+            - cell "£120,000.00" [ref=f10e166]
+          - row [ref=f10e167]:
+            - rowheader "D0022" [ref=f10e168]
+            - cell "Synthetic Depositor 022" [ref=f10e169]
+            - cell "Yes" [ref=f10e170]
+            - cell "£120,000.00" [ref=f10e171]
+          - row [ref=f10e172]:
+            - rowheader "D0023" [ref=f10e173]
+            - cell "Synthetic Depositor 023" [ref=f10e174]
+            - cell "Yes" [ref=f10e175]
+            - cell "£10,209.88" [ref=f10e176]
+          - row [ref=f10e177]:
+            - rowheader "D0024" [ref=f10e178]
+            - cell "Synthetic Depositor 024" [ref=f10e179]
+            - cell "Yes" [ref=f10e180]
+            - cell "£55,333.33" [ref=f10e181]
+          - row [ref=f10e182]:
+            - rowheader "D0025" [ref=f10e183]
+            - cell "Synthetic Depositor 025" [ref=f10e184]
+            - cell "No" [ref=f10e185]
+            - cell "£0.00" [ref=f10e186]
+          - row [ref=f10e187]:
+            - rowheader "D0026" [ref=f10e188]
+            - cell "Synthetic Depositor 026" [ref=f10e189]
+            - cell "Yes" [ref=f10e190]
+            - cell "£120,000.00" [ref=f10e191]
+          - row [ref=f10e192]:
+            - rowheader "D0027" [ref=f10e193]
+            - cell "Synthetic Depositor 027" [ref=f10e194]
+            - cell "Yes" [ref=f10e195]
+            - cell "£14,500.00" [ref=f10e196]
+          - row [ref=f10e197]:
+            - rowheader "D0028" [ref=f10e198]
+            - cell "Synthetic Depositor 028" [ref=f10e199]
+            - cell "Yes" [ref=f10e200]
+            - cell "£120,000.00" [ref=f10e201]
+          - row [ref=f10e202]:
+            - rowheader "D0029" [ref=f10e203]
+            - cell "Synthetic Depositor 029" [ref=f10e204]
+            - cell "Yes" [ref=f10e205]
+            - cell "£71,000.00" [ref=f10e206]
+          - row [ref=f10e207]:
+            - rowheader "D0030" [ref=f10e208]
+            - cell "Synthetic Depositor 030" [ref=f10e209]
+            - cell "Yes" [ref=f10e210]
+            - cell "£65,987.76" [ref=f10e211]
+  - contentinfo [ref=f10e212]: Fictional data. Simplified rules for demonstration only — not FSCS policy.
