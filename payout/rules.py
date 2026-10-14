@@ -12,8 +12,8 @@ from decimal import Decimal
 from typing import Iterable
 
 from payout.config import DEPOSIT_LIMIT_GBP
-from payout.models import AccountHolding, CompensationResult
-from payout.money import ZERO, to_money
+from payout.models import AccountHolding, AccountType, CompensationResult
+from payout.money import ZERO, from_pence, to_money, to_pence
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +22,7 @@ def calculate_compensation(
     holdings: Iterable[AccountHolding],
     limit: Decimal | None = None,
 ) -> list[CompensationResult]:
-    """Calculate the compensation payable to each depositor in an SCV.
+    """Calculate compensation after joint apportionment and depositor aggregation (R2-R8).
 
     Args:
         holdings: SCV rows (one row per account holder).
@@ -33,6 +33,7 @@ def calculate_compensation(
     """
     cap = DEPOSIT_LIMIT_GBP if limit is None else limit
     credited: OrderedDict[str, dict[str, Decimal]] = OrderedDict()
+    account_rows: OrderedDict[str, list[AccountHolding]] = OrderedDict()
     names: dict[str, str] = {}
     eligibility: dict[str, bool] = {}
 
@@ -40,11 +41,24 @@ def calculate_compensation(
         names.setdefault(holding.depositor_id, holding.depositor_name)
         # A depositor is eligible only if every SCV row for them says so.
         eligibility[holding.depositor_id] = eligibility.get(holding.depositor_id, True) and holding.depositor_eligible
-        # R6: an overdrawn balance counts as zero (no set-off in this demo).
-        balance = max(holding.balance_gbp, ZERO)
-        # Each SCV row carries the account balance; credit it to the holder on that row.
-        accounts = credited.setdefault(holding.depositor_id, {})
-        accounts[holding.account_id] = accounts.get(holding.account_id, ZERO) + balance
+        credited.setdefault(holding.depositor_id, {})
+        account_rows.setdefault(holding.account_id, []).append(holding)
+
+    for rows in account_rows.values():
+        if rows[0].account_type is AccountType.JOINT:
+            ordered_rows = sorted(rows, key=lambda row: row.holder_seq)
+            balance_pence = max(to_pence(rows[0].balance_gbp), 0)  # R6
+            share_pence, remainder = divmod(balance_pence, len(ordered_rows))
+            allocations = (
+                (row, from_pence(share_pence + int(index < remainder)))
+                for index, row in enumerate(ordered_rows)
+            )
+        else:
+            allocations = ((row, max(row.balance_gbp, ZERO)) for row in rows)
+
+        for holding, amount in allocations:
+            accounts = credited[holding.depositor_id]
+            accounts[holding.account_id] = accounts.get(holding.account_id, ZERO) + amount
 
     results: list[CompensationResult] = []
     for depositor_id, accounts in credited.items():
